@@ -9,13 +9,13 @@ class FindEmployee extends Component {
         return (
             <form style={formStyle}>
                 <input 
-                style={{padding: "5px"}}
+                style={{padding: "7px", width: '70%', marginRight: '7px'}}
                 type="text"
                 name="findEmployee"
                 placeholder="Search Employee"
                 />
                 <label >
-                    <select style={{padding: "5px"}}>
+                    <select style={{padding: "7px"}}>
                         <option>Name</option>
                         <option>Title</option>
                         <option>Salary</option>
@@ -23,7 +23,7 @@ class FindEmployee extends Component {
                     </select>
                 </label>
                 <input 
-                style={{padding: "5px"}}
+                style={{padding: "7px", marginLeft: '7px'}}
                 type="submit"
                 value="Submit"
                 />
@@ -33,8 +33,9 @@ class FindEmployee extends Component {
 }
 
 const formStyle = {
-    marginTop: '20px'
-    
+    margin: 'auto',
+    marginTop: '20px',
+    width: '600px'
 }
 
 

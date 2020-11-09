@@ -6,16 +6,16 @@ class Employees extends Component {
     render () {
         return (
             <table style={tableStyles}>
-                 <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Salary</th>
-                        <th>Title</th>
-                        <th>Manager</th>
+                 <thead style={{fontSize: '18px'}}>
+                    <tr style={tableTr}>
+                        <th style={tableData}>First Name</th>
+                        <th style={tableData}>Last Name</th>
+                        <th style={tableData}>Salary</th>
+                        <th style={tableData}>Title</th>
+                        <th style={tableData}>Manager</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                 <Employee />  
                 </tbody>
             </table>
@@ -23,9 +23,20 @@ class Employees extends Component {
     }
 }
 
+const tableTr = {
+    border: '1px solid black'
+}
+
+const tableData = {
+    padding: '10px 15px',
+}
+
 const tableStyles = {
-    border: '1px solid green',
-    padding: '10px'
+    margin: 'auto',
+    marginTop: '20px',
+    border: '2px outset #557A95',
+    borderCollapse: 'collapse',
+    maxWidth: '600px'  
 }
 
 export default Employees

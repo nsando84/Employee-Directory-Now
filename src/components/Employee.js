@@ -8,7 +8,7 @@ class Employee extends Component {
             <tr>
                 <td>Tom</td>
                 <td>Duncan</td> 
-                <td>$60,000</td> 
+                <td>60,000</td> 
                 <td>Engineer</td> 
                 <td>Bill Duke</td>   
              </tr>
