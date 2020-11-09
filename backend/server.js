@@ -1,24 +1,33 @@
 const express = require('express')
-const app = express()
 const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-dotenv.config()
-const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_DATABASE}?retryWrites=true&w=majority`
 
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static('public'))
-const PORT = process.env.PORT || 7000
+require('dotenv').config()
+
+const app = express()
+const port = process.env.PORT || 5000
+
+app.use(express.json())
+
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_DATABASE}`
+mongoose.connect(
+    uri, { 
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+        })
+
+const connection = mongoose.connection
+connection.once('open', () => {
+    console.log('MongoDb connection made')
+})
 
 
-app.use(require('./routes/transaction'))
+const usersRouter = require('./routes/employee')
 
 
-app.listen(PORT, () => {
-    console.log('listening on: ' + PORT)
-    mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
-    mongoose.connection
-    .once('open', () => console.log('connected'))
-    .on('error', (error) => console.log('error: '+ error))
+app.use('/employees', usersRouter)
+
+app.listen(port, () => {
+    console.log(`server running on ${port}`)
 })
