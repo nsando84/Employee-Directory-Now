@@ -1,14 +1,25 @@
+import Axios from 'axios'
 import React, { Component  } from 'react'
 import Aux from '../hoc/Aux'
 import './Employees.css'
 import Modal from './layout/UI/Modal'
 import UpdateEmployee from './UpdateEmployee'
+import axios from 'axios'
 
 class FindEmployee extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            updateModal: false,
+            findUser: ''
+        }
 
-   state = {
-        updateModal: false
-   }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    getEmployee = () => {
+        
+    }
 
     employeeCancelHandler = (e) => {
         this.setState({updateModal: false})
@@ -16,14 +27,28 @@ class FindEmployee extends Component {
 
     updateHander = (e) => {
         e.preventDefault()
-        this.setState({updateModal: true})
+        if (!this.state.findUser) {
+            return null
+        } else {
+            const convertName = [...this.state.findUser].join('').split(' ').join('-')   
+            return axios.get(`http://localhost:5000/employees/${convertName}`)
+                .then(response => {
+                    if (response.data === null) {
+                        return null
+                    } else {
+                        console.log(response)
+                        this.setState({updateModal: true})
+                    }
+                })
+                .catch(err => console.log(err))
+        }
     }
 
-
-
+    handleChange(event) {
+        this.setState({findUser: event.target.value});
+    }
 
     render() {
-
         return (
             <Aux>
             <form style={formStyle}>
@@ -32,6 +57,8 @@ class FindEmployee extends Component {
                 type="text"
                 name="findEmployee"
                 placeholder="Search Employee"
+                value={this.state.findUser}
+                onChange={this.handleChange}
                 />
                 <input 
                 style={{padding: "7px", marginLeft: '7px'}}
