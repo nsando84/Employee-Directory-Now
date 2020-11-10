@@ -2,7 +2,18 @@ import React, { Component } from 'react'
 
 class FindEmployee extends Component {
 
+    state = {
+        disabled: false
+    }
 
+    componentDidMount() {
+        
+
+    }
+
+    optionChecker(e) {
+        console.log(e.target.value)
+    }
 
 
     render() {
@@ -13,19 +24,21 @@ class FindEmployee extends Component {
                 type="text"
                 name="findEmployee"
                 placeholder="Search Employee"
+                disabled={(this.state.disabled)}
                 />
                 <label >
-                    <select style={{padding: "7px"}}>
-                        <option>Name</option>
-                        <option>Title</option>
-                        <option>Salary</option>
-                        <option>Manager</option>
+                    <select style={{padding: "7px"}} onChange={this.optionChecker}>
+                        <option value="enabled">Name</option>
+                        <option value="disabled">Title</option>
+                        <option value="disabled">Salary</option>
+                        <option value="disabled">Manager</option>
                     </select>
                 </label>
                 <input 
                 style={{padding: "7px", marginLeft: '7px'}}
                 type="submit"
                 value="Submit"
+                onSubmit={this.props.sort}
                 />
             </form>
         )
