@@ -18,7 +18,10 @@ router.get('/:employee' , (req, res) => {
 
 
 
-router.post( '/add', (req, res) => {
+router.post( '/:id', (req, res) => {
+    console.log(req.params)
+    console.log(req.body)
+
     employeeInput = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -27,11 +30,11 @@ router.post( '/add', (req, res) => {
         manager: req.body.manager
     }
 
-    const newEmployee = new Employee(employeeInput)
+    // const newEmployee = new Employee(employeeInput)
 
-    newEmployee.save()
-        .then(() => res.json('User added!'))
-        .catch(err => res.json('Error: ' + err))
+    // newEmployee.save()
+    //     .then(() => res.json('User added!'))
+    //     .catch(err => res.json('Error: ' + err))
 })
 
 module.exports = router

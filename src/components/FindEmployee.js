@@ -38,6 +38,7 @@ class FindEmployee extends Component {
                     } else {
                             let managerNow = response.data.manager.split(' ').map(e => e.charAt(0).toUpperCase() + e.slice(1)).join(' ')
                             this.setState({updateModal: true, updateEmployeHolder: {
+                                _id: response.data._id,
                                 firstname: response.data.firstname.charAt(0).toUpperCase() + response.data.firstname.slice(1),
                                 lastname: response.data.lastname.charAt(0).toUpperCase() + response.data.lastname.slice(1),
                                 salary: response.data.salary,

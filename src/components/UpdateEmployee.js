@@ -1,5 +1,5 @@
 import React, { Component  } from 'react'
-
+import axios from 'axios'
     
 
 class UpdateEmployee extends Component {
@@ -19,6 +19,7 @@ class UpdateEmployee extends Component {
     }
 
     componentDidUpdate() { 
+        console.log(this.props)
         if (this.state.employee._id === '') {
             this.setState({employee: {...this.props}})
         }  
@@ -28,8 +29,18 @@ class UpdateEmployee extends Component {
         console.log(word.target.value)
     }
     
+    updateHander = () => {
+        console.log(this.state.employee)
+        axios.post(`http://localhost:5000/employees/${this.state.employee._id}`, this.state.employee)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => console.log(err)
+        )
+    }
+
+
     render () {
-        
         
         return (
             <div style={updateEmployeeStyle} id={this.state.employee._id}>
@@ -50,7 +61,7 @@ class UpdateEmployee extends Component {
                         <span>Manager</span><input style={inputEle} name="manager" value={this.state.employee.manager} onChange={this.fieldChange} />
                     </div>
                 </div>
-                <button style={updateBtn}>Update</button>
+                <button style={updateBtn} onClick={this.updateHander}>Update</button>
             </div>
         )
 
