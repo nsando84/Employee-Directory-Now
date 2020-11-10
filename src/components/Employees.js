@@ -29,16 +29,14 @@ class Employees extends Component {
                     }
                 }) 
             })
-            console.log(this.state.employees)
           })
-          .then(() => this.sortNow())
           .catch((error) => {
             console.log(error);
           })
       }
       
 
-    sortNow = (sortValue) => {    
+    sortNow = (sortValue) => { 
         const titleSorted = [...this.state.employees].sort((a, b) => {
             if (typeof a[sortValue] !== 'number') {
                 return (
@@ -67,7 +65,7 @@ class Employees extends Component {
     render () {
 
         return (
-            <table style={tableStyles} className="table-sortable">
+            <table style={tableStyles}>
                  <thead style={{fontSize: '18px'}}>
                     <tr style={tableTr}>
                         <th style={tableData}><button type="link" onClick={() => this.sortNow('firstname')}>First Name</button></th>
