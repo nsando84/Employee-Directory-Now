@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Employee from './Employee'
-import './Employees.css'
 import axios from 'axios'
 
 class Employees extends Component {
@@ -12,7 +11,18 @@ class Employees extends Component {
     componentDidMount() {
         axios.get('http://localhost:5000/employees/')
           .then(response => {
-            this.setState({ employees: response.data })
+            this.setState({ employees: response.data.map(ele => {
+                let managerNow = ele.manager.split(' ').map(e => e.charAt(0).toUpperCase() + e.slice(1)).join(' ')
+                    return {
+                        firstname: ele.firstname.charAt(0).toUpperCase() + ele.firstname.slice(1),
+                        lastname: ele.lastname.charAt(0).toUpperCase() + ele.lastname.slice(1),
+                        salary: ele.salary,
+                        title: ele.title.charAt(0).toUpperCase() + ele.title.slice(1),
+                        manager: managerNow
+                    }
+                }) 
+            })
+            console.log(this.state.employees)
           })
           .then(() => this.sortNow())
           .catch((error) => {
@@ -41,8 +51,8 @@ class Employees extends Component {
             <table style={tableStyles} className="table-sortable">
                  <thead style={{fontSize: '18px'}}>
                     <tr style={tableTr}>
-                        <th style={tableData}>First Name</th>
-                        <th style={tableData}>Last Name</th>
+                        <th style={tableData}><button type="link" onClick={() => this.sortNow('firstname')}>First Name</button></th>
+                        <th style={tableData}><button type="link" onClick={() => this.sortNow('lastname')}>Last Name</button></th>
                         <th style={tableData}><button type="link" onClick={() => this.sortNow('salary')}>Salary</button></th>
                         <th style={tableData}><button type="link" onClick={() => this.sortNow('title')}>Title</button></th>
                         <th style={tableData}><button type="link" onClick={() => this.sortNow('manager')}>Manager</button></th>
@@ -69,7 +79,7 @@ const tableStyles = {
     marginTop: '20px',
     border: '2px outset #557A95',
     borderCollapse: 'collapse',
-    maxWidth: '600px'  
+    width: '800px'  
 }
 
 export default Employees

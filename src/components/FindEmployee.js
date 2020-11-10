@@ -26,14 +26,14 @@ class FindEmployee extends Component {
                 placeholder="Search Employee"
                 disabled={(this.state.disabled)}
                 />
-                <label >
+                {/* <label >
                     <select style={{padding: "7px"}} onChange={this.optionChecker}>
                         <option value="enabled">Name</option>
                         <option value="disabled">Title</option>
                         <option value="disabled">Salary</option>
                         <option value="disabled">Manager</option>
                     </select>
-                </label>
+                </label> */}
                 <input 
                 style={{padding: "7px", marginLeft: '7px'}}
                 type="submit"
