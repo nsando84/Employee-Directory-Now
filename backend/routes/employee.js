@@ -8,6 +8,16 @@ router.get('/' , (req, res) => {
         .catch(err => res.json('Error: ' + err))
 })
 
+
+router.get('/:employee' , (req, res) => {
+    const employeeTemp = req.params.employee.split("-")
+    Employee.findOne({ firstname: employeeTemp[0], lastname: employeeTemp[1]})
+        .then(users => res.json(users))
+        .catch(err => res.json('Error: ' + err))
+})
+
+
+
 router.post( '/add', (req, res) => {
     employeeInput = {
         firstname: req.body.firstname,

@@ -19,6 +19,9 @@ class FindEmployee extends Component {
         this.setState({updateModal: true})
     }
 
+
+
+
     render() {
 
         return (
@@ -38,7 +41,7 @@ class FindEmployee extends Component {
                 />
             </form>
             <Modal show={this.state.updateModal} modalClosed={this.employeeCancelHandler}>
-                <UpdateEmployee firstname="john" lastname="doe" title="worker" salary="40000" manager="richard gill" />
+                <UpdateEmployee firstname="" lastname="" title="" salary="" manager="" />
             </Modal>
             </Aux>
         )

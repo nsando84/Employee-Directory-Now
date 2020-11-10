@@ -4,11 +4,17 @@ import React, { Component  } from 'react'
 
 class UpdateEmployee extends Component {
 
-
+    
     render () {
+        console.log(this.props)
         return (
-
-            <h1>hihihihii</h1>
+            <div>
+                <input></input>
+                <input></input>
+                <input></input>
+                <input></input>
+                <input></input>
+            </div>
         )
 
     }
