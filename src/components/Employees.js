@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Employee from './Employee'
 import axios from 'axios'
+import './Employees.css'
 
 class Employees extends Component {
     state = {
@@ -63,16 +64,23 @@ class Employees extends Component {
 
 
     render () {
-
+        let directionBtn;
+        Object.entries(this.state.direction).forEach(e => {
+            if (e[1] === 'asc') {
+                directionBtn = 'headerSortUp'
+            } else { 
+                directionBtn = 'headerSortDown'
+            }
+        })
         return (
             <table style={tableStyles}>
                  <thead style={tableHead}>
                     <tr style={tableTr}>
-                        <th style={tableData}>First Name<button style={sortBtn} type="link" onClick={() => this.sortNow('firstname')}>x</button></th>
-                        <th style={tableData}>Last Name<button style={sortBtn} type="link" onClick={() => this.sortNow('lastname')}>x</button></th>
-                        <th style={tableData}>Salary<button style={sortBtn} type="link" onClick={() => this.sortNow('salary')}>x</button></th>
-                        <th style={tableData}>Title<button style={sortBtn} type="link" onClick={() => this.sortNow('title')}>x</button></th>
-                        <th style={tableData}>Manager<button style={sortBtn} type="link" onClick={() => this.sortNow('manager')}>x</button></th>
+                        <th style={tableData}>First Name<span className={directionBtn} style={sortBtn} type="link" onClick={() => this.sortNow('firstname')}></span></th>
+                        <th style={tableData}>Last Name<span className={directionBtn} style={sortBtn} type="link" onClick={() => this.sortNow('lastname')}></span></th>
+                        <th style={tableData}>Salary<span className={directionBtn} style={sortBtn} type="link" onClick={() => this.sortNow('salary')}></span></th>
+                        <th style={tableData}>Title<span className={directionBtn} style={sortBtn} type="link" onClick={() => this.sortNow('title')}></span></th>
+                        <th style={tableData}>Manager<span className={directionBtn} style={sortBtn} type="link" onClick={() => this.sortNow('manager')}></span></th>
                     </tr>
                 </thead>
                 <tbody >
@@ -107,7 +115,7 @@ const tableStyles = {
 
 const sortBtn = {
     marginLeft: '5px',
-    padding: '2px'
+    // padding: '2px'
 }
 
 const tableHead = {

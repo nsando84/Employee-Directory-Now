@@ -1,0 +1,26 @@
+/* table td,
+table th {
+  border: 1px solid silver;
+} */
+
+.headerSortDown:after,
+.headerSortUp:after {
+  padding-left: .3em;
+  content: "\2191\2193";
+  opacity: .3;
+}
+
+.headerSortDown:after {
+  padding-left: .3em;
+  content: "\2193"; 
+}
+
+.headerSortUp:after {
+  padding-left: .3em;
+  content: "\2191";
+}
+
+.headerSortDown,
+.headerSortUp {
+  background-image: none;
+}
