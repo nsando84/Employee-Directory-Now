@@ -1,4 +1,3 @@
-import Axios from 'axios'
 import React, { Component  } from 'react'
 import Aux from '../hoc/Aux'
 import './Employees.css'
@@ -11,7 +10,8 @@ class FindEmployee extends Component {
         super(props)
         this.state = {
             updateModal: false,
-            findUser: ''
+            findUser: '',
+            updateEmployeHolder: {}
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -28,7 +28,7 @@ class FindEmployee extends Component {
     updateHander = (e) => {
         e.preventDefault()
         if (!this.state.findUser) {
-            return null
+            console.log(inputError.display)
         } else {
             const convertName = [...this.state.findUser].join('').split(' ').join('-')   
             return axios.get(`http://localhost:5000/employees/${convertName}`)
@@ -36,8 +36,8 @@ class FindEmployee extends Component {
                     if (response.data === null) {
                         return null
                     } else {
-                        console.log(response)
-                        this.setState({updateModal: true})
+                        this.setState({updateModal: true, updateEmployeHolder: response.data})
+                       
                     }
                 })
                 .catch(err => console.log(err))
@@ -66,9 +66,16 @@ class FindEmployee extends Component {
                 value="Search"
                 onClick={this.updateHander}
                 />
+                <span style={inputError}>No results</span>
             </form>
             <Modal show={this.state.updateModal} modalClosed={this.employeeCancelHandler}>
-                <UpdateEmployee firstname="" lastname="" title="" salary="" manager="" />
+                <UpdateEmployee 
+                    firstname={this.state.updateEmployeHolder.firstname} 
+                    lastname={this.state.updateEmployeHolder.lastname} 
+                    title={this.state.updateEmployeHolder.title} 
+                    salary={this.state.updateEmployeHolder.salary} 
+                    manager={this.state.updateEmployeHolder.manager} 
+                    id={this.state.updateEmployeHolder._id}/>
             </Modal>
             </Aux>
         )
@@ -77,8 +84,15 @@ class FindEmployee extends Component {
 
 const formStyle = {
     margin: 'auto',
-    marginTop: '20px',
-    width: '600px'
+    marginTop: '25px',
+    width: '600px',
+    height: '60px'
+}
+
+let inputError = {
+    display: 'none',
+    marginTop: '5px',
+    color: 'red'
 }
 
 

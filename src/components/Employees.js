@@ -105,7 +105,7 @@ const tableData = {
 
 const tableStyles = {
     margin: 'auto',
-    marginTop: '20px',
+    marginTop: '7px',
     border: '2px outset #557A95',
     borderCollapse: 'collapse',
     width: '90%',
