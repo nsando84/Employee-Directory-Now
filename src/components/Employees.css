@@ -1,7 +1,3 @@
-/* table td,
-table th {
-  border: 1px solid silver;
-} */
 
 .headerSortDown:after,
 .headerSortUp:after {
@@ -24,3 +20,4 @@ table th {
 .headerSortUp {
   background-image: none;
 }
+

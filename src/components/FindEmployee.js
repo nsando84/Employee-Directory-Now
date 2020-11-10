@@ -1,26 +1,25 @@
 import React, { Component  } from 'react'
-import Modal from 'react-modal';
 import Aux from '../hoc/Aux'
-Modal.setAppElement('#root')
-
+import './Employees.css'
+import Modal from './layout/UI/Modal'
+import UpdateEmployee from './UpdateEmployee'
 
 class FindEmployee extends Component {
 
-    state = {
-        isOpen: false
-    }
-    
-    toggleModal = event => {
-        event.preventDefault()
-        console.log(event);
-        const { isOpen } = this.state;
-        this.setState({ isOpen: !isOpen });
-      }
+   state = {
+        updateModal: false
+   }
 
+    employeeCancelHandler = (e) => {
+        this.setState({updateModal: false})
+    }
+
+    updateHander = (e) => {
+        e.preventDefault()
+        this.setState({updateModal: true})
+    }
 
     render() {
-
-        let { isOpen } = this.state
 
         return (
             <Aux>
@@ -35,24 +34,11 @@ class FindEmployee extends Component {
                 style={{padding: "7px", marginLeft: '7px'}}
                 type="submit"
                 value="Search"
-                onClick={this.toggleModal}
+                onClick={this.updateHander}
                 />
             </form>
-
-            <Modal
-            id="modal_with_forms"
-            isOpen={isOpen}
-            closeTimeoutMS={150}
-            contentLabel="modalB"
-            shouldCloseOnOverlayClick={true}
-            onRequestClose={this.toggleModal}
-            aria={{
-              labelledby: "heading",
-              describedby: "fulldescription"
-            }}>
-
-            
-
+            <Modal show={this.state.updateModal} modalClosed={this.employeeCancelHandler}>
+                <UpdateEmployee firstname="john" lastname="doe" title="worker" salary="40000" manager="richard gill" />
             </Modal>
             </Aux>
         )
