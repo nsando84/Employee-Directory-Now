@@ -11,7 +11,7 @@ function Header() {
 const headerStyle = {
     backgroundColor: '#557A95',
     color: 'white',
-    padding: '15px'
+    padding: '17px'
 }
 
 export default Header

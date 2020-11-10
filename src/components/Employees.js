@@ -66,13 +66,13 @@ class Employees extends Component {
 
         return (
             <table style={tableStyles}>
-                 <thead style={{fontSize: '18px'}}>
+                 <thead style={tableHead}>
                     <tr style={tableTr}>
-                        <th style={tableData}><button type="link" onClick={() => this.sortNow('firstname')}>First Name</button></th>
-                        <th style={tableData}><button type="link" onClick={() => this.sortNow('lastname')}>Last Name</button></th>
-                        <th style={tableData}><button type="link" onClick={() => this.sortNow('salary')}>Salary</button></th>
-                        <th style={tableData}><button type="link" onClick={() => this.sortNow('title')}>Title</button></th>
-                        <th style={tableData}><button type="link" onClick={() => this.sortNow('manager')}>Manager</button></th>
+                        <th style={tableData}>First Name<button style={sortBtn} type="link" onClick={() => this.sortNow('firstname')}>x</button></th>
+                        <th style={tableData}>Last Name<button style={sortBtn} type="link" onClick={() => this.sortNow('lastname')}>x</button></th>
+                        <th style={tableData}>Salary<button style={sortBtn} type="link" onClick={() => this.sortNow('salary')}>x</button></th>
+                        <th style={tableData}>Title<button style={sortBtn} type="link" onClick={() => this.sortNow('title')}>x</button></th>
+                        <th style={tableData}>Manager<button style={sortBtn} type="link" onClick={() => this.sortNow('manager')}>x</button></th>
                     </tr>
                 </thead>
                 <tbody >
@@ -88,7 +88,11 @@ const tableTr = {
 }
 
 const tableData = {
-    padding: '10px 15px',
+    padding: '13px 25px',
+    marginLeft: '5px',
+    color: '#5D5C61',
+    borderBottom: '2px solid black'
+
 }
 
 const tableStyles = {
@@ -96,7 +100,17 @@ const tableStyles = {
     marginTop: '20px',
     border: '2px outset #557A95',
     borderCollapse: 'collapse',
-    width: '800px'  
+    width: '90%',
+    paddingLeft: '15px',
+    paddingRight: '15px' 
 }
 
+const sortBtn = {
+    marginLeft: '5px',
+    padding: '2px'
+}
+
+const tableHead = {
+    fontSize: '18px',
+}
 export default Employees
