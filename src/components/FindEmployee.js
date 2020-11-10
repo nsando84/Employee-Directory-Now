@@ -36,8 +36,15 @@ class FindEmployee extends Component {
                     if (response.data === null) {
                         return null
                     } else {
-                        this.setState({updateModal: true, updateEmployeHolder: response.data})
-                       
+                            let managerNow = response.data.manager.split(' ').map(e => e.charAt(0).toUpperCase() + e.slice(1)).join(' ')
+                            this.setState({updateModal: true, updateEmployeHolder: {
+                                firstname: response.data.firstname.charAt(0).toUpperCase() + response.data.firstname.slice(1),
+                                lastname: response.data.lastname.charAt(0).toUpperCase() + response.data.lastname.slice(1),
+                                salary: response.data.salary,
+                                title: response.data.title.charAt(0).toUpperCase() + response.data.title.slice(1),
+                                manager: managerNow
+                                }
+                            })
                     }
                 })
                 .catch(err => console.log(err))
