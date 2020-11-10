@@ -4,7 +4,14 @@ import axios from 'axios'
 
 class Employees extends Component {
     state = {
-        employees: []
+        employees: [],
+        direction: {
+            firstname: 'asc',
+            lastname: 'asc',
+            salary: 'asc',
+            title: 'asc',
+            manager: 'asc',
+        }
     }
 
 
@@ -31,17 +38,29 @@ class Employees extends Component {
       }
       
 
-    sortNow = (sort) => {
+    sortNow = (sortValue) => {    
         const titleSorted = [...this.state.employees].sort((a, b) => {
-            if (typeof a[sort] !== 'number') {
-                return a[sort].localeCompare(b[sort])
+            if (typeof a[sortValue] !== 'number') {
+                return (
+                    this.state.direction[sortValue] === 'asc' ?
+                    a[sortValue].localeCompare(b[sortValue]) :
+                    b[sortValue].localeCompare(a[sortValue])
+                )
             } else {
-                return a[sort] - b[sort] 
-            }
-            
+                return (
+                    this.state.direction[sortValue] === 'asc' ?
+                    a[sortValue] - b[sortValue] :
+                    b[sortValue] - a[sortValue]
+                )
+            }    
         })
-        console.log(titleSorted)
-         this.setState({employees: titleSorted})
+         this.setState({
+             employees: titleSorted,
+             direction: {
+                 [sortValue]: this.state.direction[sortValue] === 'asc' ?
+                 'dsc' : 'asc'
+             }
+            })
     }
 
 
