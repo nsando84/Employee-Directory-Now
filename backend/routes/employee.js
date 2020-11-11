@@ -27,12 +27,13 @@ router.post( '/:id', (req, res) => {
         title: req.body.title,
         manager: req.body.manager
     }
-
     // const newEmployee = new Employee(employeeInput)
 
-    // newEmployee.save()
-    //     .then(() => res.json('User added!'))
-    //     .catch(err => res.json('Error: ' + err))
+    Employee.findByIdAndUpdate(req.params.id, employeeInput)
+        .then((e) => {res.json('User updated!')
+            console.log(e)
+        })
+        .catch(err => res.json('Error: ' + err))
 })
 
 module.exports = router

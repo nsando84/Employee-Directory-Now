@@ -12,14 +12,14 @@ class UpdateEmployee extends Component {
                 salary: 0,
                 title: '',
                 manager: '',
-                _id: ''
+                id: ''
             }
         }
         this.fieldChange = this.fieldChange.bind(this)
     }
 
     componentDidUpdate() { 
-        if (this.state.employee._id === '') {
+        if (this.state.employee.id === '') {
             this.setState({employee: {...this.props}})
         }  
     }
@@ -34,8 +34,7 @@ class UpdateEmployee extends Component {
     }
     
     updateHander = () => {
-        console.log(this.state.employee)
-        axios.post(`http://localhost:5000/employees/${this.state.employee._id}`, this.state.employee)
+        axios.post(`http://localhost:5000/employees/${this.state.employee.id}`, this.state.employee)
             .then(response => {
                 console.log(response)
             })
