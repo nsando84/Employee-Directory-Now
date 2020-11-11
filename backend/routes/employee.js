@@ -19,9 +19,7 @@ router.get('/:employee' , (req, res) => {
 
 
 router.post( '/:id', (req, res) => {
-    console.log(req.params)
     console.log(req.body)
-
     employeeInput = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,

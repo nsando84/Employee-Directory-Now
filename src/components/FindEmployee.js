@@ -11,7 +11,12 @@ class FindEmployee extends Component {
         this.state = {
             updateModal: false,
             findUser: '',
-            updateEmployeHolder: {}
+            updateEmployeHolder: {},
+            error: {
+                display: 'none',
+                marginTop: '5px',
+                color: 'red'
+            }
         }
 
         this.handleChange = this.handleChange.bind(this)
@@ -21,16 +26,25 @@ class FindEmployee extends Component {
         this.setState({updateModal: false})
     }
 
+    errorHander = () => {
+        this.setState(prevState => ({
+            error: {...prevState.error,
+            display: 'block'
+            }
+        }))
+    }
+
+
     updateHander = (e) => {
         e.preventDefault()
         if (!this.state.findUser) {
-            console.log(inputError.display)
+            this.errorHander()
         } else {
             const convertName = [...this.state.findUser].join('').split(' ').join('-')   
             return axios.get(`http://localhost:5000/employees/${convertName}`)
                 .then(response => {
                     if (response.data === null) {
-                        return null
+                        this.errorHander()
                     } else {
                             let managerNow = response.data.manager.split(' ').map(e => e.charAt(0).toUpperCase() + e.slice(1)).join(' ')
                             this.setState({updateModal: true, updateEmployeHolder: {
@@ -63,6 +77,17 @@ class FindEmployee extends Component {
                 placeholder="Search Employee"
                 value={this.state.findUser}
                 onChange={this.handleChange}
+                onInput={() => {
+                    if (this.state.findUser.length > 0) {
+                        if (this.state.error.display === 'block') {
+                            this.setState(prevState => ({
+                                error: {...prevState.error,
+                                display: 'none'
+                                }
+                            }))
+                        }
+                    }
+                }}
                 />
                 <input 
                 style={{padding: "7px", marginLeft: '7px'}}
@@ -70,7 +95,7 @@ class FindEmployee extends Component {
                 value="Search"
                 onClick={this.updateHander}
                 />
-                <span style={inputError}>No results</span>
+                <span style={this.state.error}>No results</span>
             </form>
             <Modal show={this.state.updateModal} modalClosed={this.employeeCancelHandler}>
                 <UpdateEmployee 
@@ -93,11 +118,7 @@ const formStyle = {
     height: '60px'
 }
 
-let inputError = {
-    display: 'none',
-    marginTop: '5px',
-    color: 'red'
-}
+
 
 
 
