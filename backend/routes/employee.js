@@ -19,15 +19,13 @@ router.get('/:employee' , (req, res) => {
 
 
 router.post( '/:id', (req, res) => {
-    console.log(req.body)
     employeeInput = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
+        firstname: req.body.firstname.charAt(0).toLowerCase() + req.body.firstname.slice(1),
+        lastname: req.body.lastname.charAt(0).toLowerCase() +  req.body.lastname.slice(1),
         salary: req.body.salary,
         title: req.body.title,
         manager: req.body.manager
     }
-    // const newEmployee = new Employee(employeeInput)
 
     Employee.findByIdAndUpdate(req.params.id, employeeInput)
         .then((e) => {res.json('User updated!')

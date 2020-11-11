@@ -99,6 +99,7 @@ class FindEmployee extends Component {
             </form>
             <Modal show={this.state.updateModal} modalClosed={this.employeeCancelHandler}>
                 <UpdateEmployee 
+                    modalClosed={this.employeeCancelHandler}
                     firstname={this.state.updateEmployeHolder.firstname} 
                     lastname={this.state.updateEmployeHolder.lastname} 
                     title={this.state.updateEmployeHolder.title} 

@@ -36,7 +36,7 @@ class UpdateEmployee extends Component {
     updateHander = () => {
         axios.post(`http://localhost:5000/employees/${this.state.employee.id}`, this.state.employee)
             .then(response => {
-                console.log(response)
+                this.props.modalClosed()
             })
             .catch(err => console.log(err)
         )
@@ -64,6 +64,7 @@ class UpdateEmployee extends Component {
                         <span>Manager</span><input style={inputEle} name="manager" value={this.state.employee.manager} onChange={this.fieldChange} />
                     </div>
                 </div>
+                <button style={deleteBtn}>Delete</button>
                 <button style={updateBtn} onClick={this.updateHander}>Update</button>
             </div>
         )
@@ -74,7 +75,8 @@ class UpdateEmployee extends Component {
 
 const updateEmployeeStyle = {
     padding: '15px',
-    border: '5px solid #557A95'
+    border: '5px solid #557A95',
+    paddingBottom: '60px'
 }
 
 const nameWrapper = {
@@ -106,11 +108,18 @@ const inputEle = {
 
 const updateBtn = {
     marginTop: '10px',
-    display: 'block',
-    marginReft: '0',
-    marginLeft: 'auto',
+    float: 'right',
     padding: '10px',
     backgroundColor: '#5D6C61',
     color: 'white'
 }
+
+const deleteBtn = {
+    marginTop: '10px',
+    float: 'left',
+    padding: '10px',
+    backgroundColor: 'red',
+    color: 'white'
+}
+
 export default UpdateEmployee
