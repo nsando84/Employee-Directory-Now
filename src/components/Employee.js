@@ -3,8 +3,17 @@ import Aux from '../hoc/Aux'
 import { v4 as uuidv4 } from 'uuid'
 
 class Employee extends Component {
-    
+    // constructor(props) {
+    //     super(props)
 
+
+
+    //     this.handleDbUpdates = this.handleDbUpdates.bind(this)
+    // }
+    // handleDbUpdates = (employ) => {
+        
+    //     this.setState({needRefresh: true})
+    // }
     
 
     render () {       

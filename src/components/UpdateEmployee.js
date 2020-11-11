@@ -36,6 +36,7 @@ class UpdateEmployee extends Component {
     updateHander = () => {
         axios.post(`http://localhost:5000/employees/${this.state.employee.id}`, this.state.employee)
             .then(response => {
+                this.props.handleAllDbUpdate()
                 this.props.modalClosed()
             })
             .catch(err => console.log(err)

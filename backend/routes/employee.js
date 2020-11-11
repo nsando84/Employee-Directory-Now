@@ -28,9 +28,7 @@ router.post( '/:id', (req, res) => {
     }
 
     Employee.findByIdAndUpdate(req.params.id, employeeInput)
-        .then((e) => {res.json('User updated!')
-            console.log(e)
-        })
+        .then(response => { res.send(response) })
         .catch(err => res.json('Error: ' + err))
 })
 

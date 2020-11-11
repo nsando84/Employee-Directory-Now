@@ -34,6 +34,7 @@ class FindEmployee extends Component {
         }))
     }
 
+    
 
     updateHander = (e) => {
         e.preventDefault()
@@ -47,7 +48,7 @@ class FindEmployee extends Component {
                         this.errorHander()
                     } else {
                             let managerNow = response.data.manager.split(' ').map(e => e.charAt(0).toUpperCase() + e.slice(1)).join(' ')
-                            this.setState({updateModal: true, updateEmployeHolder: {
+                            this.setState({updateModal: true, findUser: '', updateEmployeHolder: {
                                 _id: response.data._id,
                                 firstname: response.data.firstname.charAt(0).toUpperCase() + response.data.firstname.slice(1),
                                 lastname: response.data.lastname.charAt(0).toUpperCase() + response.data.lastname.slice(1),
@@ -56,6 +57,7 @@ class FindEmployee extends Component {
                                 manager: managerNow
                                 }
                             })
+
                     }
                 })
                 .catch(err => console.log(err))
@@ -66,7 +68,10 @@ class FindEmployee extends Component {
         this.setState({findUser: event.target.value});
     }
 
+
+
     render() {
+
         return (
             <Aux>
             <form style={formStyle}>
@@ -99,6 +104,7 @@ class FindEmployee extends Component {
             </form>
             <Modal show={this.state.updateModal} modalClosed={this.employeeCancelHandler}>
                 <UpdateEmployee 
+                    handleAllDbUpdate={this.props.handleAllDbUpdate}
                     modalClosed={this.employeeCancelHandler}
                     firstname={this.state.updateEmployeHolder.firstname} 
                     lastname={this.state.updateEmployeHolder.lastname} 
