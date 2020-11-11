@@ -17,10 +17,6 @@ class FindEmployee extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    getEmployee = () => {
-        
-    }
-
     employeeCancelHandler = (e) => {
         this.setState({updateModal: false})
     }

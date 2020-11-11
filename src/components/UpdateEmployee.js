@@ -19,14 +19,19 @@ class UpdateEmployee extends Component {
     }
 
     componentDidUpdate() { 
-        console.log(this.props)
         if (this.state.employee._id === '') {
             this.setState({employee: {...this.props}})
         }  
     }
 
     fieldChange = (word) => {
-        console.log(word.target.value)
+        // let tempState = {...this.state.employee}
+        this.setState(prevState => ({
+            employee: {
+                ...prevState.employee,
+                [word.target.name]: word.target.value
+            }
+        })) 
     }
     
     updateHander = () => {
