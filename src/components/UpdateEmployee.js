@@ -25,7 +25,6 @@ class UpdateEmployee extends Component {
     }
 
     fieldChange = (word) => {
-        // let tempState = {...this.state.employee}
         this.setState(prevState => ({
             employee: {
                 ...prevState.employee,
