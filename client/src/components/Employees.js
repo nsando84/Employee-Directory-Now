@@ -33,7 +33,7 @@ class Employees extends Component {
       
 
     getEmployees = () => {
-        axios.get('http://localhost:5000/employees/')
+        axios.get('/employees/')
         .then(response => {
           this.setState({ employees: response.data.map(ele => {
               let managerNow = ele.manager.split(' ').map(e => e.charAt(0).toUpperCase() + e.slice(1)).join(' ')

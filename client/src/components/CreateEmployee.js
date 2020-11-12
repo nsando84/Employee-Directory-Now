@@ -47,7 +47,7 @@ class CreateEmployee extends Component {
                 }
             }))
         } else {  
-            axios.post('http://localhost:5000/employees/add/', this.state.employee)
+            axios.post('/employees/add/', this.state.employee)
                 .then(() => {
                     this.props.handleAllDbUpdate()
                 })

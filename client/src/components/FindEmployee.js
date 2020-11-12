@@ -50,7 +50,7 @@ class FindEmployee extends Component {
             this.errorHander()
         } else {
             const convertName = [...this.state.findUser].join('').split(' ').join('-') 
-            return axios.get(`http://localhost:5000/employees/${convertName}`)
+            return axios.get(`/employees/${convertName}`)
                 .then(response => {
                     if (response.data === null) {
                         this.errorHander()

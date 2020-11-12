@@ -38,7 +38,7 @@ class UpdateEmployee extends Component {
     }
     
     updateHander = () => {
-        axios.post(`http://localhost:5000/employees/update/${this.state.employee.id}`, this.state.employee)
+        axios.post(`/employees/update/${this.state.employee.id}`, this.state.employee)
             .then(() => {
                 this.props.handleAllDbUpdate()
                 this.props.modalClosed()
@@ -48,7 +48,7 @@ class UpdateEmployee extends Component {
     }
 
     deleteHandler = () => {
-        axios.delete(`http://localhost:5000/employees/${this.state.employee.id}`, this.state.employee)
+        axios.delete(`/employees/${this.state.employee.id}`, this.state.employee)
             .then(() => {
                 this.props.handleAllDbUpdate()
                 this.props.modalClosed()
