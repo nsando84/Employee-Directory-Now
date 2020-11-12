@@ -3,6 +3,7 @@ import Aux from '../hoc/Aux'
 import './Employees.css'
 import Modal from './layout/UI/Modal'
 import UpdateEmployee from './UpdateEmployee'
+import CreateEmployee from './CreateEmployee'
 import axios from 'axios'
 
 class FindEmployee extends Component {
@@ -10,6 +11,7 @@ class FindEmployee extends Component {
         super(props)
         this.state = {
             updateModal: false,
+            createModal: false,
             findUser: '',
             updateEmployeHolder: {},
             error: {
@@ -20,11 +22,17 @@ class FindEmployee extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
+        this.handleCreate = this.handleCreate.bind(this)
     }
 
     employeeCancelHandler = (e) => {
         this.setState({updateModal: false})
     }
+
+    createCancelHandler = (e) => {
+        this.setState({createModal: false})
+    }
+
 
     errorHander = () => {
         this.setState(prevState => ({
@@ -71,6 +79,11 @@ class FindEmployee extends Component {
         this.setState({findUser: event.target.value});
     }
 
+    handleCreate = (e) => {
+        e.preventDefault()
+        this.setState({createModal: true})
+        console.log('hello world')
+    }
 
 
     render() {
@@ -98,12 +111,20 @@ class FindEmployee extends Component {
                 }}
                 />
                 <input 
-                style={{padding: "7px", marginLeft: '7px'}}
+                style={updateBtn}
                 type="submit"
                 value="Update"
                 onClick={this.updateHander}
                 />
+                <input 
+                style={createBtn}
+                type="submit"
+                value="Create"
+                onClick={this.handleCreate}
+                />
+
                 <span style={this.state.error}>No results</span>
+                
             </form>
             <Modal show={this.state.updateModal} modalClosed={this.employeeCancelHandler}>
                 <UpdateEmployee 
@@ -115,6 +136,9 @@ class FindEmployee extends Component {
                     salary={this.state.updateEmployeHolder.salary} 
                     manager={this.state.updateEmployeHolder.manager} 
                     id={this.state.updateEmployeHolder._id}/>
+            </Modal>
+            <Modal show={this.state.createModal} modalClosed={this.createCancelHandler}>
+                <CreateEmployee />
             </Modal>
             </Aux>
         )
@@ -128,7 +152,19 @@ const formStyle = {
     height: '60px'
 }
 
+const updateBtn = {
+    padding: "7px", 
+    marginLeft: '7px'
+}
 
+const createBtn = {
+    padding: "7px", 
+    marginLeft: '7px',
+    backgroundColor: '#B1A296',
+    color: 'white',
+    border: '1px solid black',
+    borderRadius: '5%'
+}
 
 
 
