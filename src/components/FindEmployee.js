@@ -82,7 +82,6 @@ class FindEmployee extends Component {
     handleCreate = (e) => {
         e.preventDefault()
         this.setState({createModal: true})
-        console.log('hello world')
     }
 
 
@@ -138,7 +137,7 @@ class FindEmployee extends Component {
                     id={this.state.updateEmployeHolder._id}/>
             </Modal>
             <Modal show={this.state.createModal} modalClosed={this.createCancelHandler}>
-                <CreateEmployee />
+                <CreateEmployee modalClosed={this.createCancelHandler}/>
             </Modal>
             </Aux>
         )

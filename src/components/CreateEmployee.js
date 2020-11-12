@@ -23,55 +23,78 @@ class CreateEmployee extends Component {
 
     }
 
-render () {
-    return (
-        <Aux>
-            <div style={updateEmployeeStyle}>
-                <span style={summaryEl}>Create new employee</span>
-                <hr></hr>
-                <div style={nameWrapper}>
-                    <div style={inputStyle}>
-                        <span>First Name: 
-                        <input name="firstname" style={inputEle} value={this.state.employee.firstname}/>
-                        </span>
-                    </div>
+    fieldChange = (word) => {
+        this.setState(prevState => ({
+            employee: {
+                ...prevState.employee,
+                [word.target.name]: word.target.value
+            }
+        })) 
+    }
 
-                    <div style={inputStyle}>
-                        <span>Last Name: 
-                        <input name="lastname" style={inputEle} value={this.state.employee.lastname}/>
-                        </span>
-                    </div>
+    createHandler = () => {
+        console.log('hihi')
+        const { firstname, lastname, manager, salary, title } = this.state.employee
+        if (!firstname || !lastname || !manager || !salary || !title) {
+            this.setState(prevState => ({
+                error: {...prevState.error,
+                display: 'block'
+                }
+            }))
+        } else {
+            console.log(this.state.employee)
+            this.props.modalClosed()
+        }
 
-                    <div style={inputStyle}>
-                        <span>Salary:   
-                        <input name="salary" style={inputEle} value={this.state.employee.salary}/>
-                        </span>
-                    </div> 
 
-                    <div style={inputStyle}>
-                        <span>Title:
-                        <input name="title" style={inputEle} value={this.state.employee.title}/>
-                        </span>
-                    </div>
+    }
 
-                    <div style={inputStyle}>
-                        <span>Manager
-                        <input name="manager" style={inputEle} value={this.state.employee.manager}/>
-                        </span>
+
+    render () {
+        return (
+            <Aux>
+                <div style={updateEmployeeStyle}>
+                    <span style={summaryEl}>Create new employee</span>
+                    <hr></hr>
+                    <div style={nameWrapper}>
+                        <div style={inputStyle}>
+                            <span>First Name: 
+                            <input name="firstname" style={inputEle} value={this.state.employee.firstname} onChange={this.fieldChange}/>
+                            </span>
+                        </div>
+
+                        <div style={inputStyle}>
+                            <span>Last Name: 
+                            <input name="lastname" style={inputEle} value={this.state.employee.lastname} onChange={this.fieldChange}/>
+                            </span>
+                        </div>
+
+                        <div style={inputStyle}>
+                            <span>Salary:   
+                            <input name="salary" type="number" style={inputEle} value={this.state.employee.salary} onChange={this.fieldChange}/>
+                            </span>
+                        </div> 
+
+                        <div style={inputStyle}>
+                            <span>Title:
+                            <input name="title" style={inputEle} value={this.state.employee.title} onChange={this.fieldChange}/>
+                            </span>
+                        </div>
+
+                        <div style={inputStyle}>
+                            <span>Manager
+                            <input name="manager" style={inputEle} value={this.state.employee.manager} onChange={this.fieldChange}/>
+                            </span>
+                        </div>
+                        <span style={this.state.error}>All fields required</span>
                     </div>
-                    <span style={this.state.error}>All fields required</span>
+                    <button style={updateBtn} onClick={this.createHandler}>Create</button>
                 </div>
-                <button style={updateBtn}>Create</button>
-            </div>
-        </Aux>
-
-
-
-
-    )
+            </Aux>
+        )
+    }
 }
 
-}
 
 const summaryEl = {
     paddingBottom: '15px', 

@@ -32,4 +32,19 @@ router.post( '/:id', (req, res) => {
         .catch(err => res.json('Error: ' + err))
 })
 
+
+
+router.post( '/add', (req, res) => {
+    employeeInput = {
+        firstname: req.body.firstname.charAt(0).toLowerCase() + req.body.firstname.slice(1),
+        lastname: req.body.lastname.charAt(0).toLowerCase() +  req.body.lastname.slice(1),
+        salary: req.body.salary,
+        title: req.body.title,
+        manager: req.body.manager
+    }
+
+    console.log(employeeInput)
+})
+
+
 module.exports = router

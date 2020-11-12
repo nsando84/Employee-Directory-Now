@@ -39,7 +39,7 @@ class UpdateEmployee extends Component {
     
     updateHander = () => {
         axios.post(`http://localhost:5000/employees/${this.state.employee.id}`, this.state.employee)
-            .then(response => {
+            .then(() => {
                 this.props.handleAllDbUpdate()
                 this.props.modalClosed()
             })
@@ -61,7 +61,7 @@ class UpdateEmployee extends Component {
                 </div>
                 <div>
                     <div style={inputStyle}>
-                        <span>Salary<input style={inputEle} name="salary" value={this.state.employee.salary} onChange={this.fieldChange} /></span> 
+                        <span>Salary<input type="number" style={inputEle} name="salary" value={this.state.employee.salary} onChange={this.fieldChange} /></span> 
                     </div>
                     <div style={inputStyle}>
                         <span>Title</span> <input style={inputEle} name="title" value={this.state.employee.title} onChange={this.fieldChange} />
