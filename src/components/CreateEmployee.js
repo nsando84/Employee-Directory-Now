@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Aux from '../hoc/Aux'
+import axios from 'axios'
 
 class CreateEmployee extends Component {
     constructor(props) {
@@ -23,6 +24,8 @@ class CreateEmployee extends Component {
 
     }
 
+    
+
     fieldChange = (word) => {
         this.setState(prevState => ({
             employee: {
@@ -41,8 +44,12 @@ class CreateEmployee extends Component {
                 display: 'block'
                 }
             }))
-        } else {
-            console.log(this.state.employee)
+        } else {  
+            axios.post('http://localhost:5000/employees/add/', this.state.employee)
+                .then(() => {
+                    this.props.handleAllDbUpdate()
+                })
+                .catch(err => console.log(err))
             this.props.modalClosed()
             this.setState({employee: {
                 firstname: '',
@@ -50,7 +57,7 @@ class CreateEmployee extends Component {
                 salary: '',
                 title: '',
                 manager: '',
-            }
+                }
             })
         }
     }

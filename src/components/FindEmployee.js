@@ -137,7 +137,7 @@ class FindEmployee extends Component {
                     id={this.state.updateEmployeHolder._id}/>
             </Modal>
             <Modal show={this.state.createModal} modalClosed={this.createCancelHandler}>
-                <CreateEmployee modalClosed={this.createCancelHandler}/>
+                <CreateEmployee modalClosed={this.createCancelHandler} handleAllDbUpdate={this.props.handleAllDbUpdate}/>
             </Modal>
             </Aux>
         )
