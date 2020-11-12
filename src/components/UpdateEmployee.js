@@ -47,6 +47,15 @@ class UpdateEmployee extends Component {
         )
     }
 
+    deleteHandler = () => {
+        axios.delete(`http://localhost:5000/employees/${this.state.employee.id}`, this.state.employee)
+            .then(() => {
+                this.props.handleAllDbUpdate()
+                this.props.modalClosed()
+            })
+            .catch(err => console.log(err)
+        )
+    }
    
 
     render () {
@@ -70,7 +79,7 @@ class UpdateEmployee extends Component {
                         <span>Manager</span><input style={inputEle} name="manager" value={this.state.employee.manager} onChange={this.fieldChange} />
                     </div>
                 </div>
-                <button style={deleteBtn}>Delete</button>
+                <button style={deleteBtn} onClick={this.deleteHandler}>Delete</button>
                 <button style={updateBtn} onClick={this.updateHander}>Update</button>
             </div>
         )
