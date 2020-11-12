@@ -13,9 +13,9 @@
 
   
 
-  ### We are tasked with creating an Employee Directory.
+  ### The task was to create an Employee Directory.
   
-  #### React.js, MongoDB with Mongoose, Express, & Node.js.
+  #### (MERN) - React.js, MongoDB with Mongoose, Express, & Node.js.
 
  #### Demo the application here - [***Employee Directory Now***](https://employee-now.herokuapp.com/)
  
@@ -48,7 +48,7 @@
 ### **Installation**
 
    
-    npm install react
+    npx create-react-app
     npm install express
     npm install mongoose
     npm install dotenv
