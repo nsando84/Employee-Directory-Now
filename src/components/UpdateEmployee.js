@@ -16,11 +16,15 @@ class UpdateEmployee extends Component {
             }
         }
         this.fieldChange = this.fieldChange.bind(this)
+        this.resetInfo = this.resetInfo.bind(this)
     }
 
-    componentDidUpdate() { 
-        if (this.state.employee.id === '') {
-            this.setState({employee: {...this.props}})
+    componentDidUpdate(prevProps, prevState) { 
+        if (this.props.id !== prevState.employee.id) {
+            this.setState(prevState => ({
+                employee: {...this.props},
+                ...prevState.employee
+        }))
         }  
     }
 
@@ -37,10 +41,15 @@ class UpdateEmployee extends Component {
         axios.post(`http://localhost:5000/employees/${this.state.employee.id}`, this.state.employee)
             .then(response => {
                 this.props.handleAllDbUpdate()
-                this.props.modalClosed()
+                this.resetInfo()
             })
             .catch(err => console.log(err)
         )
+    }
+
+    resetInfo = () => {
+        this.props.modalClosed()
+
     }
 
 

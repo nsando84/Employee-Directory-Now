@@ -38,17 +38,23 @@ class FindEmployee extends Component {
 
     updateHander = (e) => {
         e.preventDefault()
+        // this.setState({updateEmployeHolder: null})
         if (!this.state.findUser) {
             this.errorHander()
         } else {
-            const convertName = [...this.state.findUser].join('').split(' ').join('-')   
+            const convertName = [...this.state.findUser].join('').split(' ').join('-') 
+            console.log(convertName)  
+            console.log(this.state.updateEmployeHolder)
             return axios.get(`http://localhost:5000/employees/${convertName}`)
                 .then(response => {
                     if (response.data === null) {
                         this.errorHander()
                     } else {
+                            console.log(this.updateEmployeHolder)
                             let managerNow = response.data.manager.split(' ').map(e => e.charAt(0).toUpperCase() + e.slice(1)).join(' ')
-                            this.setState({updateModal: true, findUser: '', updateEmployeHolder: {
+                            this.setState(prevState => ({
+                                findUser: '',
+                                updateEmployeHolder: {
                                 _id: response.data._id,
                                 firstname: response.data.firstname.charAt(0).toUpperCase() + response.data.firstname.slice(1),
                                 lastname: response.data.lastname.charAt(0).toUpperCase() + response.data.lastname.slice(1),
@@ -56,10 +62,11 @@ class FindEmployee extends Component {
                                 title: response.data.title.charAt(0).toUpperCase() + response.data.title.slice(1),
                                 manager: managerNow
                                 }
-                            })
-
+                            }))
+                            
                     }
                 })
+                .then(() => this.setState({updateModal: true}))
                 .catch(err => console.log(err))
         }
     }
@@ -97,7 +104,7 @@ class FindEmployee extends Component {
                 <input 
                 style={{padding: "7px", marginLeft: '7px'}}
                 type="submit"
-                value="Search"
+                value="Update"
                 onClick={this.updateHander}
                 />
                 <span style={this.state.error}>No results</span>
