@@ -15,7 +15,7 @@
 
   ### The task was to create an Employee Directory.
   
-  #### (MERN) - React.js, MongoDB with Mongoose, Express, & Node.js.
+  #### MERN - React.js, MongoDB with Mongoose, Express, & Node.js.
 
  #### Demo the application here - [***Employee Directory Now***](https://employee-now.herokuapp.com/)
  
