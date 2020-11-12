@@ -9,7 +9,7 @@ class Employee extends Component {
             <Aux> 
             {this.props.employees.map((employees, index) => {
                 let colorRow;
-                index % 2 !== 0 ? colorRow = "white" : colorRow = "#FFEBCD"
+                index % 2 !== 0 ? colorRow = "white" : colorRow = "#F5F5F5"
 
                 return (
                     <tr key={uuidv4()} style={{backgroundColor: colorRow, height: "15px"}}>
@@ -26,8 +26,8 @@ class Employee extends Component {
     }
 }
  const tdStyle = {
-     padding: "4px",
-     border: "1px solid lightgrey"
+     padding: "9px",
+    //  border: "1px solid lightgrey"
  }
 
 export default Employee

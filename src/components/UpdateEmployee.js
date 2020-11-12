@@ -89,9 +89,9 @@ class UpdateEmployee extends Component {
 }
 
 const updateEmployeeStyle = {
-    padding: '15px',
-    border: '5px solid #557A95',
-    paddingBottom: '60px'
+    padding: '20px',
+    border: '1px solid #557A95',
+    paddingBottom: '100px'
 }
 
 const nameWrapper = {
@@ -122,19 +122,21 @@ const inputEle = {
 }
 
 const updateBtn = {
-    marginTop: '10px',
+    marginTop: '50px',
     float: 'right',
     padding: '10px',
-    backgroundColor: '#5D6C61',
-    color: 'white'
+    backgroundColor: 'grey',
+    color: 'white',
+    border: '1px solid black'
 }
 
 const deleteBtn = {
-    marginTop: '10px',
+    marginTop: '50px',
     float: 'left',
     padding: '10px',
     backgroundColor: 'red',
-    color: 'white'
+    color: 'white',
+    border: '1px solid black'
 }
 
 export default UpdateEmployee

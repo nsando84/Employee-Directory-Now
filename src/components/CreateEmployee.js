@@ -31,12 +31,14 @@ class CreateEmployee extends Component {
             employee: {
                 ...prevState.employee,
                 [word.target.name]: word.target.value
+            },
+            error: {...prevState.error,
+                display: 'none'
             }
         })) 
     }
 
     createHandler = () => {
-        console.log('hihi')
         const { firstname, lastname, manager, salary, title } = this.state.employee
         if (!firstname || !lastname || !manager || !salary || !title) {
             this.setState(prevState => ({
@@ -101,7 +103,7 @@ class CreateEmployee extends Component {
                         </div>
                         <span style={this.state.error}>All fields required</span>
                     </div>
-                    <button style={updateBtn} onClick={this.createHandler}>Create</button>
+                    <button style={createBtn} onClick={this.createHandler}>Create</button>
                 </div>
             </Aux>
         )
@@ -142,12 +144,13 @@ const updateEmployeeStyle = {
     paddingBottom: '60px'
 }
 
-const updateBtn = {
+const createBtn = {
     marginTop: '10px',
     float: 'right',
     padding: '10px',
     backgroundColor: '#B1A296',
-    color: 'white'
+    color: 'white',
+    border: '1px solid black'
 }
 
 export default CreateEmployee

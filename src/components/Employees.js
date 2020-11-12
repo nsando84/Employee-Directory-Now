@@ -114,21 +114,21 @@ class Employees extends Component {
 }
 
 const tableTr = {
-    border: '1px solid black'
+    // border: '1px solid black'
 }
 
 const tableData = {
     padding: '13px 25px',
     marginLeft: '5px',
     color: '#5D5C61',
-    borderBottom: '2px solid black'
+    // borderBottom: '2px solid black'
 
 }
 
 const tableStyles = {
     margin: 'auto',
     marginTop: '7px',
-    border: '2px outset #557A95',
+    // border: '2px outset #557A95',
     borderCollapse: 'collapse',
     width: '90%',
     paddingLeft: '15px',
@@ -140,6 +140,6 @@ const sortBtn = {
 }
 
 const tableHead = {
-    fontSize: '18px',
+    fontSize: '12px',
 }
 export default Employees

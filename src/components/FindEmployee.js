@@ -152,13 +152,15 @@ const formStyle = {
 }
 
 const updateBtn = {
-    padding: "7px", 
-    marginLeft: '7px'
+    padding: "8px", 
+    marginLeft: '8px',
+    border: '1px solid black',
+    borderRadius: '5%'
 }
 
 const createBtn = {
-    padding: "7px", 
-    marginLeft: '7px',
+    padding: "8px", 
+    marginLeft: '8px',
     backgroundColor: '#B1A296',
     color: 'white',
     border: '1px solid black',
