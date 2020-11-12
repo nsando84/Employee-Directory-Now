@@ -19,7 +19,7 @@
 
  #### Demo the application here - [***Employee Directory Now***](https://employee-now.herokuapp.com/)
  
- ### Video demo - [Right Here](https://drive.google.com/file/d/1gLguB57RV6hOV0EuNUWAZ-8_TroCG3mi/view)
+ ### Video demo - [Right Here](https://drive.google.com/file/d/1KureH25msBE17CudcJl8HP8HVxLTyQNX/view)
  
   ### Features in this application:
   
