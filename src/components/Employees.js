@@ -120,19 +120,17 @@ const tableTr = {
 const tableData = {
     padding: '13px 25px',
     marginLeft: '5px',
-    color: '#5D5C61',
-    // borderBottom: '2px solid black'
-
+    color: '#557A95',
+    
 }
 
 const tableStyles = {
     margin: 'auto',
     marginTop: '7px',
-    // border: '2px outset #557A95',
     borderCollapse: 'collapse',
     width: '90%',
     paddingLeft: '15px',
-    paddingRight: '15px' 
+    paddingRight: '15px', 
 }
 
 const sortBtn = {

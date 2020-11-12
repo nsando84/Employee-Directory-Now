@@ -89,7 +89,7 @@ class FindEmployee extends Component {
 
         return (
             <Aux>
-            <form style={formStyle}>
+            <form style={formStyle} className={'container'}>
                 <input 
                 style={{padding: "7px", width: '70%', marginRight: '7px'}}
                 type="text"
