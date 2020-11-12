@@ -16,7 +16,7 @@ class UpdateEmployee extends Component {
             }
         }
         this.fieldChange = this.fieldChange.bind(this)
-        this.resetInfo = this.resetInfo.bind(this)
+    
     }
 
     componentDidUpdate(prevProps, prevState) { 
@@ -41,17 +41,13 @@ class UpdateEmployee extends Component {
         axios.post(`http://localhost:5000/employees/${this.state.employee.id}`, this.state.employee)
             .then(response => {
                 this.props.handleAllDbUpdate()
-                this.resetInfo()
+                this.props.modalClosed()
             })
             .catch(err => console.log(err)
         )
     }
 
-    resetInfo = () => {
-        this.props.modalClosed()
-
-    }
-
+   
 
     render () {
         

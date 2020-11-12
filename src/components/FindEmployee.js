@@ -38,22 +38,19 @@ class FindEmployee extends Component {
 
     updateHander = (e) => {
         e.preventDefault()
-        // this.setState({updateEmployeHolder: null})
         if (!this.state.findUser) {
             this.errorHander()
         } else {
             const convertName = [...this.state.findUser].join('').split(' ').join('-') 
-            console.log(convertName)  
-            console.log(this.state.updateEmployeHolder)
             return axios.get(`http://localhost:5000/employees/${convertName}`)
                 .then(response => {
                     if (response.data === null) {
                         this.errorHander()
                     } else {
-                            console.log(this.updateEmployeHolder)
                             let managerNow = response.data.manager.split(' ').map(e => e.charAt(0).toUpperCase() + e.slice(1)).join(' ')
                             this.setState(prevState => ({
                                 findUser: '',
+                                updateModal: true,
                                 updateEmployeHolder: {
                                 _id: response.data._id,
                                 firstname: response.data.firstname.charAt(0).toUpperCase() + response.data.firstname.slice(1),
@@ -66,7 +63,6 @@ class FindEmployee extends Component {
                             
                     }
                 })
-                .then(() => this.setState({updateModal: true}))
                 .catch(err => console.log(err))
         }
     }
