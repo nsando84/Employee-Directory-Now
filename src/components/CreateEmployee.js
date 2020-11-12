@@ -44,9 +44,15 @@ class CreateEmployee extends Component {
         } else {
             console.log(this.state.employee)
             this.props.modalClosed()
+            this.setState({employee: {
+                firstname: '',
+                lastname: '',
+                salary: '',
+                title: '',
+                manager: '',
+            }
+            })
         }
-
-
     }
 
 
